@@ -1,91 +1,141 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-    	<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
+      crossorigin="anonymous"
+    />
 
-		<title>XMLHttpRequest Object</title>
-		
-		<style>
-			body {
-				width: 100%;
-				height: 100%;
-				display: table;
-				position: absolute;
-				background-color: #98C1D9;
-			}
+    <title>XMLHttpRequest Object</title>
 
-			.card-container {
-				display: table-cell;
-   				vertical-align: middle;
-			}
+    <style>
+      body {
+        width: 100%;
+        height: 100%;
+        display: table;
+        position: absolute;
+        background-color: #98c1d9;
+      }
 
-			.btn {
-				background-color: #3D5A80 !important;
-				border-color: #3D5A80 !important;
-				font-size: 20px;
-				font-weight: bold;
-				text-transform: uppercase;
-				width: 10em; 
-			}
+      .card-container {
+        display: table-cell;
+        vertical-align: middle;
+      }
 
-			.btn:hover {
-				background-color: #98C1D9 !important;
-				border-color: #98C1D9 !important;
-				color: #3D5A80;
-			}
+      .btn {
+        background-color: #3d5a80 !important;
+        border-color: #3d5a80 !important;
+        font-size: 18px;
+        font-weight: bold;
+        text-transform: uppercase;
+        width: 14em;
+        margin-right: 20px;
+      }
 
-			.name {
-				margin-top: -10px;
-			}
+      .btn:hover {
+        background-color: #98c1d9 !important;
+        border-color: #98c1d9 !important;
+        color: #3d5a80;
+      }
 
-			span {
-				font-weight: bolder;
-				color: #3D5A80;
-			}
-			
-		</style>
+      .name {
+        margin-top: -10px;
+      }
 
-		<script>
-			function loadFile()
-			{
-				var xhttp = new XMLHttpRequest();
-				xhttp.onreadystatechange = function()
-				{
-					if (this.readyState == 4 && this.status == 200)
-					{
-						document.getElementById("sample").innerHTML = 	this.responseText;
-					}
-				};
-				xhttp.open("GET", "person_get.php", true);
-				xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-				xhttp.send();
-			}
-		</script>
-	</head>
-<body>
-	<div class="card-container vertical-center">
-		<div class="card text-center m-5">
-			<div class="card-header">
-				<h1>The XMLHttpRequest Object</h1>
-			</div>
-			<div class="card-body">
-			  <h3 class="card-title">Employees</h3>
-			  <p class="card-text">Click <span>REQUEST DATA</span> to get employees' data.</p>
-			  <button type="button" class="btn btn-primary" onclick="loadFile()">Request data</button>
-			  <p class="m-4" id="sample"></p>
-			</div>
-			<div class="card-footer text-muted">
-			  <p>Submitted by:</p>
-			  <p class="name">Arias, Alyssa Mae C. & Escolano, Janika T.</p>
-			</div>
-		  </div>
-	</div>
+      span {
+        font-weight: bolder;
+        color: #3d5a80;
+      }
+
+      thead  {
+        background-color: black !important;
+        color: white !important;
+      }
+    </style>
+
+    <script>
+      // Load PHP File for JSON Format
+
+      function loadJSON() {
+        var xhttp = new XMLHttpRequest();
+        
+        xhttp.onreadystatechange = function () {
+          if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("sample").innerHTML = this.responseText;
+          }
+        };
+
+        xhttp.open("GET", "person_get.php", true);
+        xhttp.setRequestHeader(
+          "Content-type",
+          "application/x-www-form-urlencoded"
+        );
+
+        xhttp.send();
+      }
+
+      // Load PHP File for Table Format
+      function loadTable() {
+        var xhttp = new XMLHttpRequest();
+        
+        xhttp.onreadystatechange = function () {
+          if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("sample").innerHTML = this.responseText;
+          }
+        };
+
+        xhttp.open("GET", "person_get_table.php", true);
+        xhttp.setRequestHeader(
+          "Content-type",
+          "application/x-www-form-urlencoded"
+        );
+        
+        xhttp.send();
+      }
+    </script>
+  </head>
   
+  <body>
+    <div class="card-container vertical-center">
+      <div class="card text-center m-5">
+        <div class="card-header">
+          <h1>The XMLHttpRequest Object</h1>
+        </div>
 
+        <div class="card-body">
+          <h3 class="card-title">Employees</h3>
+          <p class="card-text">
+            Choose from <span>JSON or TABLE</span> format to get employees' data.
+          </p>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+          <!-- Load JSON Format Button -->
+          <button type="button" class="btn btn-primary" onclick="loadJSON()">
+            Request JSON Format
+          </button>
 
-</body>
+          <!-- Load Table Format Button  -->
+          <button type="button" class="btn btn-primary" onclick="loadTable()">
+            Request Table Format
+          </button>
+
+          <p class="m-4" id="sample"></p>
+        </div>
+
+        <div class="card-footer text-muted">
+          <p>Submitted by:</p>
+          <p class="name">Arias, Alyssa Mae C. & Escolano, Janika T.</p>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>

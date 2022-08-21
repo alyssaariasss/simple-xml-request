@@ -1,23 +1,23 @@
 <?php
+	//PHP File to convert SQL data to JSON format
 	$conn = mysqli_connect("localhost",'root','','employees');
 	
 	$query = "SELECT * FROM employee_data";
 	
-	$result = mysqli_query($conn,$query);
+	$result = mysqli_query($conn, $query);
+	
+	$employeeArray = array();
 
-	
-	
-	if ($result)
-	{
+	if ($result) {
 		while($row = mysqli_fetch_row($result))
 		{
-			echo '<hr>' .  $row[0] . str_repeat("&nbsp;", 6) , $row[1] . str_repeat("&nbsp;", 6) ,$row[2] . str_repeat("&nbsp;", 6), $row[3] .'<br>' . '<hr>';		
+			$employeeArray[] = $row;
 		}
 		mysqli_free_result($result);
-	}	
+	}
+
+	header('Content-Type: application/json; charset=utf-8');
+	echo json_encode($employeeArray, JSON_PRETTY_PRINT);
+
 	mysqli_close($conn);
-
 ?>
-
-
-
