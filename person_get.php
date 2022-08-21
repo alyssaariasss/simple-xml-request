@@ -5,19 +5,23 @@
 	$query = "SELECT * FROM employee_data";
 	
 	$result = mysqli_query($conn, $query);
-	
-	$employeeArray = array();
 
 	if ($result) {
-		while($row = mysqli_fetch_row($result))
+		$employeeArray = array();
+		
+		while($row = mysqli_fetch_assoc($result))
 		{
 			$employeeArray[] = $row;
 		}
 		mysqli_free_result($result);
 	}
 
+	echo '<pre>';
+
 	header('Content-Type: application/json; charset=utf-8');
 	echo json_encode($employeeArray, JSON_PRETTY_PRINT);
+
+	echo '</pre>';
 
 	mysqli_close($conn);
 ?>
